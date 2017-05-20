@@ -1,3 +1,8 @@
 <div class="puzzle-word">
-  <h2>Puzzle word: {{$ctrl.word}}</h2>
+  <h4>Puzzled word: {{$ctrl.word.shuffledWord}}</h4>
+  <p class="form-group">
+    <label type="text">Write correct word form</label>
+    <input type="text" class="form-control" ng-model="$ctrl.word.correctWord">
+  </p>
+  <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.onNextWordClick()">Next word</button>
 </div>
