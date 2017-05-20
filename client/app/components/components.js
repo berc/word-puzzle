@@ -1,10 +1,10 @@
 import angular from 'angular';
-import Home from './home/home';
-import About from './about/about';
+import PuzzleGame from './puzzle-game/puzzle-game';
+import Score from './score/score';
 
 let componentModule = angular.module('app.components', [
-  Home,
-  About
+  PuzzleGame,
+  Score
 ])
 
 .name;

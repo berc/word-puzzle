@@ -1,23 +1,25 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-  <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-    <ul class="nav navbar-nav">
-      <li><a ui-sref="home">Play game</a></li>
-      <li><a ui-sref="about">Hightest scores</a></li>
-    </ul>
-  </div>
+<header class="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="puzzleGame">Play game</a></li>
+        <li><a ui-sref="score">Hightest scores</a></li>
+      </ul>
+    </div>
 
-  <!--<div class="logo">
-    <h1><a>{{ $ctrl.name }}</a></h1>
-  </div>
-  <div class="nav-links">
-    <span><a>about</a></span>
-  </div>-->
-</nav>
+    <!--<div class="logo">
+      <h1><a>{{ $ctrl.name }}</a></h1>
+    </div>
+    <div class="nav-links">
+      <span><a>about</a></span>
+    </div>-->
+  </nav>
+</header>
