@@ -1,11 +1,13 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import Common from '../../common/common';
 
 import puzzleGameComponent from './puzzle-game.component';
 import countdownComponent from './countdown/countdown.component';
 
 let PuzzleGameModule = angular.module('puzzleGame', [
-  uiRouter
+  uiRouter,
+  Common
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

@@ -1,19 +1,34 @@
 class countdownController {
-  constructor($interval) {
-    this.countdown = 0;
+  inst = null;
 
-  //   ngOnInit = function() {
-  //     startCountdown();
-  //   }
+  constructor($interval, Config) {
+    this.$interval = $interval;
+    this.Config = Config;
+  }
 
-  //   startCountdown = function() {
-  //     this.countdown = 0;
-  //     let inst = $interval(() => {
-  //       $interval.
-  //     })
-  //     this.countdown = 'puzzle game';
-  //   }
+  $onInit() {
+    this.startCountdown();
+  }
+
+  startCountdown() {
+    this.countdown = this.Config.COUNTDOWN_SECONDS;
+    this.inst = this.$interval(() => {
+      this.countdown--;
+
+      if (this.countdown < 0) {
+        this.countdown = 'Game over. :)';
+        this.$interval.cancel(this.inst);
+        this.inst = null;
+      }
+
+    }, 1000);
+  }
+
+  $onDestroy() {
+    if (this.inst) {
+      this.$interval.cancel(this.inst);
+    }
   }
 }
 
-export default ['$interval', countdownController];
+export default ['$interval', 'Config', countdownController];

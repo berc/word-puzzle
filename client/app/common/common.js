@@ -1,11 +1,12 @@
 import angular from 'angular';
 import Navbar from './navbar/navbar';
-import User from './user/user';
+import Config from './config/config.service';
 
 let commonModule = angular.module('app.common', [
-  Navbar,
-  User
+  Navbar
 ])
+
+.factory('Config', Config)
   
 .name;
 
