@@ -5,6 +5,8 @@ import Common from '../../common/common';
 import puzzleGameComponent from './puzzle-game.component';
 import countdownComponent from './countdown/countdown.component';
 
+import puzzleGameService from './puzzle-game.service';
+
 let PuzzleGameModule = angular.module('puzzleGame', [
   uiRouter,
   Common
@@ -24,6 +26,8 @@ let PuzzleGameModule = angular.module('puzzleGame', [
 
 .component('puzzleGame', puzzleGameComponent)
 .component('countdown', countdownComponent)
+// .component('puzzleWord', puzzleWordComponent)
+.factory('puzzleGameService', puzzleGameService)
   
 .name;
 
