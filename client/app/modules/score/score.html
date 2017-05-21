@@ -1,6 +1,19 @@
-<main class="puzzle-game">
+<main class="puzzle-game row">
   <h1>Highest scores</h1>
-  <section>
-    
-  </section>
+  <table class="table table-striped"> 
+    <thead> 
+      <tr> 
+        <th>#</th> 
+        <th>Player Name</th> 
+        <th>Score</th> 
+      </tr>
+    </thead> 
+    <tbody> 
+      <tr ng-repeat="player in $ctrl.players track by $index"> 
+        <td>{{$index + 1}}</td> 
+        <td>{{player.name}}</td> 
+        <td>{{player.score}}</td> 
+      </tr> 
+    </tbody> 
+  </table>
 </main>
