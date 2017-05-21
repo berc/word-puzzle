@@ -2,6 +2,7 @@ let puzzleGameService = function (puzzleGameApiService) {
   let allWords = null;
   let notPlayedWords = [];
   let playedWords = [];
+  let actualScore = 0;
 
   let loadPromise = null;
 
@@ -10,6 +11,7 @@ let puzzleGameService = function (puzzleGameApiService) {
       allWords = words.map(o => o.word);
       notPlayedWords = allWords.slice();
       playedWords = [];
+      actualScore = 0;
     });
   }
 
@@ -20,11 +22,15 @@ let puzzleGameService = function (puzzleGameApiService) {
     }
     notPlayedWords = allWords.slice();
     playedWords = [];
+    actualScore = 0;
     return loadPromise;
   }
 
-  function saveResult() {
-    
+  function saveResult(word) {
+    let penalty = word.selectedWord.length - word.correctWord.length;
+    let maxWordResult = Math.floor(Math.pow(1.95, word.selectedWord.length / 3));
+    actualScore += Math.max(maxWordResult - penalty, 0);
+    return actualScore;
   }
 
   function getNextWord() {
@@ -34,7 +40,7 @@ let puzzleGameService = function (puzzleGameApiService) {
     while(shuffledWord === selectedWord) {
       shuffledWord = _shuffleWord(selectedWord);
     }
-    return {selectedWord, shuffledWord};
+    return {selectedWord, shuffledWord, correctWord: ''};
   }
 
   function _shuffleWord(word) {

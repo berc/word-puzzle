@@ -1,7 +1,23 @@
-<main class="puzzle-game ">
-  <div>
+<main class="puzzle-game">
+
+  <div class="row">
     <h1>Puzzle Game</h1>
-    <countdown></countdown>
-    <puzzle-word word="$ctrl.word" handle-next-word="$ctrl.handleNextWord(word)"></puzzle-word>
+    <div class="puzzle-game__start-game col-xs-12 col-md-4">
+      <p class="form-group">
+        <label type="text">Your Name</label>
+        <input type="text" class="form-control" ng-model="$ctrl.userName" ng-change="$ctrl.onChangedUserName()">
+      </p>
+      <button type="button" class="btn btn-primary btn-lg" ng-click="$ctrl.startGame()" ng-disabled="$ctrl.isRunning || $ctrl.isInvalidName">Start new game</button>
+    </div>
   </div>
+
+  <div class="row">
+    <puzzle-word ng-show="$ctrl.isRunning" class="col-xs-12 col-md-4" word="$ctrl.word" handle-next-word="$ctrl.handleNextWord(word)"></puzzle-word>
+  </div>
+  
+  <div class="row">
+    <countdown class="col-xs-12 col-md-6"></countdown>
+    <result-score class="col-xs-12 col-md-6" result-score="$ctrl.resultScore"></result-score>
+  </div>
+
 </main>

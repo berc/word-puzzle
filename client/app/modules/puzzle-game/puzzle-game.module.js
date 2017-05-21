@@ -5,6 +5,7 @@ import Common from '../../common/common';
 import puzzleGameComponent from './puzzle-game.component';
 import countdownComponent from './countdown/countdown.component';
 import puzzleWordComponent from './puzzle-word/puzzle-word.component';
+import resultScoreComponent from './result-score/result-score.component';
 
 import puzzleGameApiService from './puzzle-game.api.service';
 import puzzleGameService from './puzzle-game.service';
@@ -29,6 +30,7 @@ let PuzzleGameModule = angular.module('puzzleGame', [
 .component('puzzleGame', puzzleGameComponent)
 .component('countdown', countdownComponent)
 .component('puzzleWord', puzzleWordComponent)
+.component('resultScore', resultScoreComponent)
 
 .factory('puzzleGameService', puzzleGameService)
 .factory('puzzleGameApiService', puzzleGameApiService)

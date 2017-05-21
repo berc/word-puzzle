@@ -1,31 +1,53 @@
 class puzzleGameController {
   inst = null;
   loading = false;
+  isInvalidName = true;
+  isRunning = false;
+  userName = '';
+  word = '';
+  correctWord = '';
+  resultScore = 0;
 
-  constructor(puzzleGameService, Config) {
+  constructor($rootScope, puzzleGameService, scoreService, Config) {
+    this.$rootScope = $rootScope;
     this.puzzleGameService = puzzleGameService;
+    this.scoreService = scoreService;
     this.Config = Config;
-    this.word = '';
-    this.correctWord = '';
   }
 
   $onInit() {
+    this.registerOnGameOver();
+  }
+
+  startGame() {
     this.showFirstWord();
+  }
+
+  onChangedUserName() {
+    this.isInvalidName = !this.userName || this.userName.length < 3;
   }
 
   showFirstWord() {
     this.loading = true;
-    this.puzzleGameService.startGame().then(() => {this.word = this.puzzleGameService.getNextWord()})
-      .finally(o => {this.loading = false});
+    this.puzzleGameService.startGame().then(() => {
+      this.word = this.puzzleGameService.getNextWord();
+      this.resultScore = 0;
+      this.isRunning = true;
+      this.$rootScope.$broadcast('startGame');
+    }).finally(o => {this.loading = false});
   };
 
   handleNextWord() {
-    this.puzzleGameService.saveResult(this.word);
+    this.resultScore = this.puzzleGameService.saveResult(this.word);
     this.word = this.puzzleGameService.getNextWord();
   }
 
-  $onDestroy() {
+  registerOnGameOver() {
+    this.$rootScope.$on('gameOver', () => {
+      this.isRunning = false;
+      this.scoreService.saveScore({ score: this.resultScore, 'user_name': this.userName });
+    })
   }
 }
 
-export default ['puzzleGameService', 'Config', puzzleGameController];
+export default ['$rootScope', 'puzzleGameService', 'scoreService', 'Config', puzzleGameController];
