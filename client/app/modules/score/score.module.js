@@ -4,9 +4,6 @@ import Common from '../../common/common';
 
 import scoreComponent from './score.component';
 
-import scoreService from './score.service';
-import scoreApiService from './score.api.service';
-
 let scoreModule = angular.module('score', [
   uiRouter,
   Common

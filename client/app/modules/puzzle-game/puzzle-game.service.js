@@ -1,7 +1,6 @@
 let puzzleGameService = function (puzzleGameApiService) {
   let allWords = null;
   let notPlayedWords = [];
-  let playedWords = [];
   let actualScore = 0;
 
   let loadPromise = null;
@@ -10,7 +9,6 @@ let puzzleGameService = function (puzzleGameApiService) {
     return puzzleGameApiService.getPuzzleWords().then(words => {
       allWords = words.map(o => o.word);
       notPlayedWords = allWords.slice();
-      playedWords = [];
       actualScore = 0;
     });
   }
@@ -21,7 +19,6 @@ let puzzleGameService = function (puzzleGameApiService) {
       return loadPromise;
     }
     notPlayedWords = allWords.slice();
-    playedWords = [];
     actualScore = 0;
     return loadPromise;
   }
@@ -34,6 +31,9 @@ let puzzleGameService = function (puzzleGameApiService) {
   }
 
   function getNextWord() {
+    if (notPlayedWords.length === 0) {
+      notPlayedWords = allWords.slice();
+    }
     let selectedWord = notPlayedWords.pop();
 
     let shuffledWord = _shuffleWord(selectedWord);

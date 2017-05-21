@@ -1,5 +1,6 @@
 class countdownController {
   inst = null;
+  sgListener = null;
 
   constructor($rootScope, $interval, Config) {
     this.$rootScope = $rootScope;
@@ -8,7 +9,7 @@ class countdownController {
   }
 
   $onInit() {
-    this.registerOnStartGame();
+    this.sgListener = this.registerOnStartGame();
   }
 
   startCountdown() {
@@ -31,7 +32,7 @@ class countdownController {
   }
 
   registerOnStartGame() {
-    this.$rootScope.$on('startGame', () => {
+    return this.$rootScope.$on('startGame', () => {
       this.startCountdown();
     })
   }
@@ -40,6 +41,7 @@ class countdownController {
     if (this.inst) {
       this.$interval.cancel(this.inst);
     }
+    this.sgListener();
   }
 }
 

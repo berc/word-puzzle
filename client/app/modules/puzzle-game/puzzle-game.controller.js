@@ -1,5 +1,6 @@
 class puzzleGameController {
   inst = null;
+  goListener = null;
   loading = false;
   isInvalidName = true;
   isRunning = false;
@@ -16,7 +17,11 @@ class puzzleGameController {
   }
 
   $onInit() {
-    this.registerOnGameOver();
+    this.goListener = this.registerOnGameOver();
+  }
+
+  $onDestroy() {
+    this.goListener();
   }
 
   startGame() {
@@ -43,7 +48,7 @@ class puzzleGameController {
   }
 
   registerOnGameOver() {
-    this.$rootScope.$on('gameOver', () => {
+    return this.$rootScope.$on('gameOver', () => {
       this.isRunning = false;
       this.scoreService.saveScore({ score: this.resultScore, 'user_name': this.userName });
     })
