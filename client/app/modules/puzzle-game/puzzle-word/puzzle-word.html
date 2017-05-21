@@ -2,7 +2,7 @@
   <h4>Puzzled word: {{$ctrl.word.shuffledWord}}</h4>
   <p class="form-group">
     <label type="text">Write correct word form</label>
-    <input type="text" class="form-control" ng-model="$ctrl.word.correctWord">
+    <input type="text" class="form-control" ng-model="$ctrl.word.correctWord" ng-keypress="$ctrl.onKeypress($event);>
   </p>
-  <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.onNextWordClick()">Next word</button>
+  <button type="button" class="btn btn-primary btn-lg" ng-click="$ctrl.onNextWordClick()">Next word</button>
 </div>
